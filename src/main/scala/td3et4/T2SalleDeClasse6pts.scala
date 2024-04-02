@@ -17,6 +17,11 @@ object T2SalleDeClasse6pts extends App {
   println("Liste complète des élèves:")
   room.allStudents.foreach(student => println(s"${student.id} : nom : ${student.nom}, l'age : ${student.age}"))
 
+  println("Groupes de 3 élèves:")
+  room.groups(3).foreach(group => println(group))
+
+  println("Voisins des élèves:")
+  room.displayNeighbors()
 }
 
 case object FunctionsT2 {
@@ -55,7 +60,6 @@ case class Student(nom: String, age: Int) {
  ==================================== */
 case class Room(students: Vector[Student]*) {
 
-
   val allStudents: Seq[Student] = students.flatten
 
   /* 1.2 Proposer une méthode pour récupérer un élève en fonction de sa position.
@@ -74,5 +78,21 @@ case class Room(students: Vector[Student]*) {
       }
     }
   }
+
+  def groups(n: Int): Iterator[Seq[Student]] = {
+    groupedStudents(n)
+  }
+
+  private def groupedStudents(n: Int): Iterator[Seq[Student]] = students.flatten.grouped(n)
+
+
+  def displayNeighbors(): Unit = {
+    val neighborsIterator = allStudents.sliding(3)
+    while (neighborsIterator.hasNext) {
+      val trio = neighborsIterator.next()
+      println(s"Voisins: ${trio.map(_.nom).mkString(", ")}")
+    }
+  }
+
 
 }
