@@ -13,6 +13,10 @@ object T2SalleDeClasse6pts extends App {
   println(s"${etudiantDFromClasse.id} : nom : ${etudiantDFromClasse.nom}, l'age : ${etudiantDFromClasse.age}")
 
   room.displayPlan()
+
+  println("Liste complète des élèves:")
+  room.allStudents.foreach(student => println(s"${student.id} : nom : ${student.nom}, l'age : ${student.age}"))
+
 }
 
 case object FunctionsT2 {
@@ -51,6 +55,9 @@ case class Student(nom: String, age: Int) {
  ==================================== */
 case class Room(students: Vector[Student]*) {
 
+
+  val allStudents: Seq[Student] = students.flatten
+
   /* 1.2 Proposer une méthode pour récupérer un élève en fonction de sa position.
   Exemple room.get(2)(1) = Student(E) */
   def get(row: Int)(seat: Int): Student = {
@@ -63,8 +70,9 @@ case class Room(students: Vector[Student]*) {
     for (i <- students.indices) {
       for (j <- students(i).indices) {
         val student = students(i)(j)
-        println(s"Rangée $i, Siège $j : ${student.nom}, Age: ${student.age} (idEtudiant : ${student.id}")
+        println(s"Rangée $i, Siège $j : ${student.nom}, Age: ${student.age} (idEtudiant : ${student.id})")
       }
     }
   }
+
 }
