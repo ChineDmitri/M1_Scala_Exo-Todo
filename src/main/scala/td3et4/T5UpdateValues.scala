@@ -32,7 +32,7 @@ object T5UpdateValues extends App {
   val exoList3 = List("titi", "toto", "mama", "papa")
   println("exoList3 avant modifierFunc2 " + exoList1)
 
-  // func multiplication in 2
+  // func for upperCase
   val modifiedList3 =
     FunctionsT5.updateCollection(exoList3, FunctionsT5.modifierFunc3)
   println(
