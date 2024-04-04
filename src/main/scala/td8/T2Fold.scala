@@ -7,7 +7,22 @@ object T2Fold extends App {
   println(FunctionsForFold.toFold(5.0))
   println(FunctionsForFold.toFold(5.0, isLeft = false))
 
+  val users = Users(Map("Alice" -> 25, "Bob" -> 30,"Charlie" -> 35))
+  val usersWithIncreasedAge = users.getOlder("Bob")
+
+  println(usersWithIncreasedAge)
 }
+
+case class Users(data: Map[String, Int]) {
+  def getOlder(username: String): Users = {
+    val updatedData = data.get(username) match {
+      case Some(age) => data + (username -> (age + 1))
+      case None => data
+    }
+    Users(updatedData)
+  }
+}
+
 
 case object FunctionsForFold {
 
