@@ -10,6 +10,7 @@ object T4Queue4pts extends App {
       Queue(a :: in, out)
     }
 
+    // delete first element A
     def dequeue: (A, Queue[A]) = {
       out match {
         case head :: tail => (head, Queue(in, tail))
